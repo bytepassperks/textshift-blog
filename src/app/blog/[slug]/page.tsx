@@ -5,6 +5,7 @@ import CTABanner from '@/components/CTABanner'
 import Link from 'next/link'
 import { formatDate, estimateReadingTime, SITE_URL, SITE_NAME, MAIN_SITE_URL } from '@/lib/utils'
 import type { Metadata } from 'next'
+import LanguageSwitcher from '@/components/LanguageSwitcher'
 
 export const dynamicParams = false
 
@@ -27,11 +28,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
     const title = post.metaTitle || post.title
     const description = post.metaDescription || post.excerpt
+    const postUrl = `${SITE_URL}/blog/${post.slug.current}/`
 
     return {
       title,
       description,
       keywords: post.keywords?.join(', '),
+      alternates: { canonical: postUrl },
       openGraph: {
         title,
         description,
@@ -75,6 +78,25 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   }
 
   const readTime = post.body ? estimateReadingTime(post.body) : 3
+  const postUrl = `${SITE_URL}/blog/${post.slug.current}/`
+
+  const faqs: { question: string; answer: string }[] = []
+  if (post.faqItems && post.faqItems.length > 0) {
+    for (const item of post.faqItems) {
+      faqs.push({ question: item.question, answer: item.answer })
+    }
+  } else if (post.body) {
+    const qPattern = /<p>\s*<strong>\s*Q:\s*(.+?)\s*<\/strong>\s*<\/p>\s*<p>\s*(.+?)\s*<\/p>/gi
+    let m
+    while ((m = qPattern.exec(post.body)) !== null) {
+      faqs.push({ question: m[1].replace(/<[^>]*>/g, ''), answer: m[2].replace(/<[^>]*>/g, '') })
+    }
+  }
+
+  const translations: Record<string, string> = {}
+  if (post.linkedTranslation) {
+    translations[post.linkedTranslation.language] = `/blog/${post.linkedTranslation.slug.current}/`
+  }
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -94,9 +116,30 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE_URL}/blog/${post.slug.current}/`,
+      '@id': postUrl,
     },
   }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog/` },
+      ...(post.category ? [{ '@type': 'ListItem', position: 3, name: post.category.title, item: `${SITE_URL}/category/${post.category.slug.current}/` }] : []),
+      { '@type': 'ListItem', position: post.category ? 4 : 3, name: post.title, item: postUrl },
+    ],
+  }
+
+  const faqSchema = faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  } : null
 
   return (
     <>
@@ -104,25 +147,54 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+
+      {post.linkedTranslation && (
+        <link
+          rel="alternate"
+          hrefLang={post.linkedTranslation.language}
+          href={`${SITE_URL}/blog/${post.linkedTranslation.slug.current}/`}
+        />
+      )}
+      {post.language && (
+        <link rel="alternate" hrefLang={post.language} href={postUrl} />
+      )}
 
       <article className="mx-auto max-w-4xl px-4 py-10">
-        <div className="mb-8">
-          <div className="mb-4 flex flex-wrap items-center gap-3">
-            <Link href="/" className="text-sm text-brand-muted hover:text-brand-green">
-              &larr; Blog
-            </Link>
+        <div className="mb-6 flex items-center justify-between">
+        <nav aria-label="Breadcrumb">
+          <ol className="flex flex-wrap items-center gap-2 text-sm text-brand-muted">
+            <li><Link href="/" className="hover:text-brand-green">Home</Link></li>
+            <li><span>/</span></li>
+            <li><Link href="/blog/" className="hover:text-brand-green">Blog</Link></li>
             {post.category && (
               <>
-                <span className="text-brand-muted">/</span>
-                <Link
-                  href={`/category/${post.category.slug.current}/`}
-                  className="rounded-full bg-brand-green/10 px-3 py-1 text-xs font-medium text-brand-green hover:bg-brand-green/20"
-                >
-                  {post.category.title}
-                </Link>
+                <li><span>/</span></li>
+                <li>
+                  <Link
+                    href={`/category/${post.category.slug.current}/`}
+                    className="rounded-full bg-brand-green/10 px-3 py-1 text-xs font-medium text-brand-green hover:bg-brand-green/20"
+                  >
+                    {post.category.title}
+                  </Link>
+                </li>
               </>
             )}
-          </div>
+          </ol>
+        </nav>
+        <LanguageSwitcher currentLang={post.language || 'en'} translations={translations} />
+        </div>
+
+        <div className="mb-8">
 
           <h1 className="mb-4 text-3xl font-extrabold text-white md:text-4xl lg:text-5xl">
             {post.title}

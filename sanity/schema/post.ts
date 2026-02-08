@@ -102,6 +102,20 @@ export default {
       initialValue: 'en',
     },
     {
+      name: 'faqItems',
+      title: 'FAQ Items',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'question', title: 'Question', type: 'string' },
+            { name: 'answer', title: 'Answer', type: 'text' },
+          ],
+        },
+      ],
+    },
+    {
       name: 'linkedTranslation',
       title: 'Linked Translation',
       type: 'reference',

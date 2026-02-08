@@ -42,7 +42,9 @@ export async function getPostBySlug(slug: string) {
       metaDescription,
       focusKeyword,
       keywords,
-      language
+      language,
+      faqItems,
+      "linkedTranslation": linkedTranslation->{slug, language, title}
     }`,
     { slug }
   )

@@ -4,7 +4,7 @@ import BlogCard from '@/components/BlogCard'
 import CTABanner from '@/components/CTABanner'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { SITE_NAME } from '@/lib/utils'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const dynamicParams = false
 
@@ -54,12 +54,33 @@ export default async function CategoryPage({ params }: { params: { slug: string 
     )
   }
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog/` },
+      { '@type': 'ListItem', position: 3, name: category.title, item: `${SITE_URL}/category/${category.slug.current}/` },
+    ],
+  }
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
     <div className="mx-auto max-w-6xl px-4 py-12">
+      <nav aria-label="Breadcrumb" className="mb-6">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-brand-muted">
+          <li><Link href="/" className="hover:text-brand-green">Home</Link></li>
+          <li><span>/</span></li>
+          <li><Link href="/blog/" className="hover:text-brand-green">Blog</Link></li>
+          <li><span>/</span></li>
+          <li className="text-white">{category.title}</li>
+        </ol>
+      </nav>
       <div className="mb-10">
-        <Link href="/" className="mb-4 inline-block text-sm text-brand-muted hover:text-brand-green">
-          &larr; Back to Blog
-        </Link>
         <h1 className="mb-2 text-3xl font-bold text-white md:text-4xl">{category.title}</h1>
         {category.description && (
           <p className="text-brand-muted">{category.description}</p>
@@ -82,5 +103,6 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 
       <CTABanner />
     </div>
+    </>
   )
 }

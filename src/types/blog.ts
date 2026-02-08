@@ -1,3 +1,8 @@
+export interface FAQItem {
+  question: string
+  answer: string
+}
+
 export interface Post {
   _id: string
   title: string
@@ -14,6 +19,12 @@ export interface Post {
   focusKeyword?: string
   keywords?: string[]
   language?: string
+  faqItems?: FAQItem[]
+  linkedTranslation?: {
+    slug: { current: string }
+    language: string
+    title: string
+  }
 }
 
 export interface Author {

@@ -4,7 +4,7 @@ import BlogCard from '@/components/BlogCard'
 import CTABanner from '@/components/CTABanner'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { SITE_NAME } from '@/lib/utils'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const dynamicParams = false
 
@@ -54,11 +54,32 @@ export default async function AuthorPage({ params }: { params: { slug: string } 
     )
   }
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog/` },
+      { '@type': 'ListItem', position: 3, name: author.name, item: `${SITE_URL}/author/${author.slug.current}/` },
+    ],
+  }
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <Link href="/" className="mb-6 inline-block text-sm text-brand-muted hover:text-brand-green">
-        &larr; Back to Blog
-      </Link>
+      <nav aria-label="Breadcrumb" className="mb-6">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-brand-muted">
+          <li><Link href="/" className="hover:text-brand-green">Home</Link></li>
+          <li><span>/</span></li>
+          <li><Link href="/blog/" className="hover:text-brand-green">Blog</Link></li>
+          <li><span>/</span></li>
+          <li className="text-white">{author.name}</li>
+        </ol>
+      </nav>
 
       <div className="mb-10 flex items-start gap-5 rounded-xl border border-brand-border bg-brand-card p-6">
         <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-green/20 text-2xl font-bold text-brand-green">
@@ -86,5 +107,6 @@ export default async function AuthorPage({ params }: { params: { slug: string } 
 
       <CTABanner />
     </div>
+    </>
   )
 }

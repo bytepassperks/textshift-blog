@@ -2,9 +2,10 @@ import { getAllPosts, getAllCategories } from '@/lib/sanity'
 import { Post, Category } from '@/types/blog'
 import BlogCard from '@/components/BlogCard'
 import CTABanner from '@/components/CTABanner'
+import PaginatedBlogList from '@/components/PaginatedBlogList'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { SITE_NAME } from '@/lib/utils'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: `All Articles | ${SITE_NAME}`,
@@ -27,7 +28,21 @@ export default async function BlogIndexPage() {
     categories = []
   }
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog/` },
+    ],
+  }
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
     <div className="mx-auto max-w-6xl px-4 py-12">
       <div className="mb-10">
         <h1 className="mb-3 text-3xl font-bold text-white md:text-4xl">All Articles</h1>
@@ -57,11 +72,7 @@ export default async function BlogIndexPage() {
       )}
 
       {posts.length > 0 ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <BlogCard key={post._id} post={post} />
-          ))}
-        </div>
+        <PaginatedBlogList posts={posts} />
       ) : (
         <div className="py-16 text-center">
           <h2 className="mb-3 text-xl font-bold text-white">No articles yet</h2>
@@ -71,5 +82,6 @@ export default async function BlogIndexPage() {
 
       <CTABanner />
     </div>
+    </>
   )
 }
