@@ -3,6 +3,12 @@ export interface FAQItem {
   answer: string
 }
 
+export interface YouTubeVideo {
+  videoId: string
+  title: string
+  caption?: string
+}
+
 export interface Post {
   _id: string
   title: string
@@ -20,6 +26,7 @@ export interface Post {
   keywords?: string[]
   language?: string
   faqItems?: FAQItem[]
+  youtubeVideos?: YouTubeVideo[]
   linkedTranslation?: {
     slug: { current: string }
     language: string

@@ -46,3 +46,196 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.post-body h2 {
+  position: relative;
+  padding-left: 16px;
+  border-left: 3px solid #10B981;
+}
+
+.post-body h3 {
+  color: #d1d5db;
+}
+
+.post-body figure {
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1e1e1e;
+  background: #111111;
+}
+
+.post-body figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.post-body figure figcaption {
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #888888;
+  font-style: italic;
+  border-top: 1px solid #1e1e1e;
+}
+
+.post-body .video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 2rem 0;
+  border: 1px solid #1e1e1e;
+}
+
+.post-body .video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.post-body .video-caption {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #888888;
+  font-style: italic;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+}
+
+.post-body details.toc-container {
+  border-radius: 12px;
+  border: 1px solid #1e1e1e;
+  background: #111111;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.post-body details.toc-container summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  font-size: 1.125rem;
+}
+
+.post-body details.toc-container nav ul {
+  margin-top: 0.75rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.post-body details.toc-container nav ul li {
+  padding: 0.25rem 0;
+}
+
+.post-body details.toc-container nav ul li a {
+  color: #10B981;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.post-body details.toc-container nav ul li a:hover {
+  color: #34d399;
+  text-decoration: underline;
+}
+
+.post-body details.toc-container nav ul ul {
+  padding-left: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.post-body details.toc-container nav ul ul li a {
+  color: #888888;
+  font-size: 0.875rem;
+}
+
+.post-body details.toc-container nav ul ul li a:hover {
+  color: #10B981;
+}
+
+.post-body blockquote,
+.post-body .callout-box {
+  border-left: 3px solid #10B981;
+  background: rgba(16, 185, 129, 0.05);
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.5rem 0;
+}
+
+.post-body .cta-banner {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.post-body .cta-banner p {
+  color: white !important;
+}
+
+.post-body .cta-banner a {
+  display: inline-block;
+  background: white;
+  color: #10B981 !important;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-body .cta-banner a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.post-body ul, .post-body ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.post-body ul li, .post-body ol li {
+  padding: 0.25rem 0;
+  line-height: 1.7;
+}
+
+.post-body ul li::marker {
+  color: #10B981;
+}
+
+.post-body ol li::marker {
+  color: #10B981;
+  font-weight: 600;
+}
+
+.post-body .faq-item {
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin: 1rem 0;
+  background: #111111;
+  transition: border-color 0.2s;
+}
+
+.post-body .faq-item:hover {
+  border-color: #10B981;
+}
+
+.post-body .faq-item .faq-question {
+  color: white;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-body .faq-item .faq-answer {
+  color: #d1d5db;
+  line-height: 1.7;
+}

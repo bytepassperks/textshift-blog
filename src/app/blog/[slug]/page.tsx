@@ -2,6 +2,7 @@ import { getPostBySlug, getAllSlugs } from '@/lib/sanity'
 import { Post } from '@/types/blog'
 import PostBody from '@/components/PostBody'
 import CTABanner from '@/components/CTABanner'
+import YouTubeEmbed from '@/components/YouTubeEmbed'
 import Link from 'next/link'
 import { formatDate, estimateReadingTime, SITE_URL, SITE_NAME, MAIN_SITE_URL } from '@/lib/utils'
 import type { Metadata } from 'next'
@@ -245,7 +246,18 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           </figure>
         )}
 
-        {post.body && <PostBody content={post.body} />}
+        {post.body && (
+          <>
+            <PostBody content={post.body} />
+            {post.youtubeVideos && post.youtubeVideos.length > 0 && (
+              <div className="post-body prose prose-invert prose-lg max-w-none mt-0">
+                {post.youtubeVideos.map((video, i) => (
+                  <YouTubeEmbed key={i} videoId={video.videoId} title={video.title} caption={video.caption} />
+                ))}
+              </div>
+            )}
+          </>
+        )}
 
         <div className="mt-12 border-t border-brand-border pt-8">
           {post.keywords && post.keywords.length > 0 && (

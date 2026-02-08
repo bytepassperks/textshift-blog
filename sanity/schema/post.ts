@@ -116,6 +116,22 @@ export default {
       ],
     },
     {
+      name: 'youtubeVideos',
+      title: 'YouTube Videos',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'videoId', title: 'YouTube Video ID', type: 'string' },
+            { name: 'title', title: 'Video Title', type: 'string' },
+            { name: 'caption', title: 'Caption', type: 'string' },
+          ],
+        },
+      ],
+      description: '1-2 YouTube videos to embed in the post',
+    },
+    {
       name: 'linkedTranslation',
       title: 'Linked Translation',
       type: 'reference',

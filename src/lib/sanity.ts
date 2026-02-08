@@ -44,6 +44,7 @@ export async function getPostBySlug(slug: string) {
       keywords,
       language,
       faqItems,
+      youtubeVideos,
       "linkedTranslation": linkedTranslation->{slug, language, title}
     }`,
     { slug }
