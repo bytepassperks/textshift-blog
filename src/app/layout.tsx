@@ -45,10 +45,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <link rel="alternate" type="application/rss+xml" title="TextShift Blog RSS" href="/rss.xml" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHX0PZ88C8" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');`,
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FHX0PZ88C8');`,
           }}
         />
       </head>
