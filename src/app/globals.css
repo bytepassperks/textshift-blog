@@ -47,18 +47,66 @@ body {
   overflow: hidden;
 }
 
-.post-body h2 {
-  position: relative;
-  padding-left: 16px;
-  border-left: 3px solid #10B981;
-}
+/* ==========================================
+   BLOG POST BODY - Typography & Spacing
+   ========================================== */
 
-.post-body h3 {
+.post-body {
+  font-size: 1.125rem;
+  line-height: 1.9;
   color: #d1d5db;
 }
 
+.post-body p {
+  margin-bottom: 1.75rem;
+  line-height: 1.9;
+}
+
+.post-body h2 {
+  position: relative;
+  padding-left: 18px;
+  border-left: 4px solid #10B981;
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.post-body h3 {
+  color: #e5e5e5;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.post-body a {
+  color: #10B981;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.post-body a:hover {
+  color: #34d399;
+  border-bottom-color: #34d399;
+}
+
+.post-body strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ==========================================
+   BLOG POST BODY - Images & Figures
+   ========================================== */
+
 .post-body figure {
-  margin: 2rem 0;
+  margin: 2.5rem 0;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #1e1e1e;
@@ -72,25 +120,32 @@ body {
 }
 
 .post-body figure figcaption {
-  padding: 12px 16px;
+  padding: 14px 20px;
   text-align: center;
   font-size: 0.875rem;
   color: #888888;
   font-style: italic;
   border-top: 1px solid #1e1e1e;
+  line-height: 1.5;
 }
 
-.post-body .video-container {
+/* ==========================================
+   BLOG POST BODY - Video Embeds
+   ========================================== */
+
+.post-body .video-container,
+.video-container {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   border-radius: 12px;
-  margin: 2rem 0;
+  margin: 2.5rem 0;
   border: 1px solid #1e1e1e;
 }
 
-.post-body .video-container iframe {
+.post-body .video-container iframe,
+.video-container iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -99,38 +154,45 @@ body {
   border: 0;
 }
 
-.post-body .video-caption {
+.post-body .video-caption,
+.video-caption {
   text-align: center;
   font-size: 0.875rem;
   color: #888888;
   font-style: italic;
-  margin-top: -1rem;
+  margin-top: 0.75rem;
   margin-bottom: 2rem;
+  line-height: 1.5;
 }
+
+/* ==========================================
+   BLOG POST BODY - Table of Contents
+   ========================================== */
 
 .post-body details.toc-container {
   border-radius: 12px;
   border: 1px solid #1e1e1e;
   background: #111111;
-  padding: 1.25rem;
-  margin-bottom: 2rem;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .post-body details.toc-container summary {
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   color: white;
-  font-size: 1.125rem;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
 }
 
 .post-body details.toc-container nav ul {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   padding-left: 0;
   list-style: none;
 }
 
 .post-body details.toc-container nav ul li {
-  padding: 0.25rem 0;
+  padding: 0.35rem 0;
 }
 
 .post-body details.toc-container nav ul li a {
@@ -138,11 +200,13 @@ body {
   text-decoration: none;
   font-size: 0.95rem;
   transition: color 0.2s;
+  border-bottom: none;
 }
 
 .post-body details.toc-container nav ul li a:hover {
   color: #34d399;
   text-decoration: underline;
+  border-bottom: none;
 }
 
 .post-body details.toc-container nav ul ul {
@@ -159,25 +223,41 @@ body {
   color: #10B981;
 }
 
+/* ==========================================
+   BLOG POST BODY - Blockquotes & Callouts
+   ========================================== */
+
 .post-body blockquote,
 .post-body .callout-box {
-  border-left: 3px solid #10B981;
+  border-left: 4px solid #10B981;
   background: rgba(16, 185, 129, 0.05);
-  padding: 1rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   border-radius: 0 8px 8px 0;
-  margin: 1.5rem 0;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #d1d5db;
 }
+
+.post-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   BLOG POST BODY - CTA Banners
+   ========================================== */
 
 .post-body .cta-banner {
   background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 12px;
-  margin: 2rem 0;
+  margin: 3rem 0;
   text-align: center;
 }
 
 .post-body .cta-banner p {
   color: white !important;
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
 }
 
 .post-body .cta-banner a {
@@ -188,22 +268,29 @@ body {
   border-radius: 8px;
   font-weight: 700;
   text-decoration: none;
+  border-bottom: none;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .post-body .cta-banner a:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border-bottom: none;
 }
+
+/* ==========================================
+   BLOG POST BODY - Lists
+   ========================================== */
 
 .post-body ul, .post-body ol {
   padding-left: 1.5rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 }
 
 .post-body ul li, .post-body ol li {
-  padding: 0.25rem 0;
-  line-height: 1.7;
+  padding: 0.35rem 0;
+  line-height: 1.8;
+  margin-bottom: 0.25rem;
 }
 
 .post-body ul li::marker {
@@ -215,11 +302,15 @@ body {
   font-weight: 600;
 }
 
+/* ==========================================
+   BLOG POST BODY - FAQ Section
+   ========================================== */
+
 .post-body .faq-item {
   border: 1px solid #1e1e1e;
   border-radius: 12px;
-  padding: 1.25rem;
-  margin: 1rem 0;
+  padding: 1.5rem;
+  margin: 1.25rem 0;
   background: #111111;
   transition: border-color 0.2s;
 }
@@ -230,12 +321,80 @@ body {
 
 .post-body .faq-item .faq-question {
   color: white;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.05rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .post-body .faq-item .faq-answer {
   color: #d1d5db;
-  line-height: 1.7;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   BLOG POST BODY - Code
+   ========================================== */
+
+.post-body code {
+  background: #1a1a2e;
+  color: #10B981;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.post-body pre {
+  background: #111111;
+  border: 1px solid #1e1e1e;
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+/* ==========================================
+   BLOG POST BODY - Horizontal Rules
+   ========================================== */
+
+.post-body hr {
+  border: none;
+  border-top: 1px solid #1e1e1e;
+  margin: 3rem 0;
+}
+
+/* ==========================================
+   BLOG POST BODY - Responsive
+   ========================================== */
+
+@media (max-width: 768px) {
+  .post-body {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .post-body h2 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-body h3 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-body p {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-body figure {
+    margin: 2rem -1rem;
+    border-radius: 0;
+  }
+
+  .post-body .cta-banner {
+    padding: 1.5rem;
+    margin: 2rem -0.5rem;
+  }
 }

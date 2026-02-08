@@ -250,7 +250,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           <>
             <PostBody content={post.body} />
             {post.youtubeVideos && post.youtubeVideos.length > 0 && (
-              <div className="post-body prose prose-invert prose-lg max-w-none mt-0">
+              <div className="post-body max-w-none mt-0">
                 {post.youtubeVideos.map((video, i) => (
                   <YouTubeEmbed key={i} videoId={video.videoId} title={video.title} caption={video.caption} />
                 ))}

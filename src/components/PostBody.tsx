@@ -39,18 +39,7 @@ export default function PostBody({ content }: { content: string }) {
   return (
     <div
       ref={ref}
-      className="post-body prose prose-invert prose-lg max-w-none
-        prose-headings:text-white prose-headings:font-bold
-        prose-h2:mt-12 prose-h2:mb-5 prose-h2:text-2xl
-        prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl
-        prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-5
-        prose-a:text-brand-green prose-a:no-underline hover:prose-a:underline
-        prose-strong:text-white
-        prose-ul:text-gray-300 prose-ol:text-gray-300
-        prose-li:text-gray-300
-        prose-blockquote:border-brand-green prose-blockquote:text-gray-400
-        prose-code:text-brand-green prose-code:bg-brand-card prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-      "
+      className="post-body max-w-none"
       dangerouslySetInnerHTML={{ __html: processed }}
     />
   )
