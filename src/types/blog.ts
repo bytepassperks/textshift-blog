@@ -49,3 +49,13 @@ export interface Category {
   slug: { current: string }
   description?: string
 }
+
+export interface Comment {
+  _id: string
+  name: string
+  text: string
+  approved: boolean
+  createdAt: string
+  parentComment?: { _ref: string } | null
+  replies?: Comment[]
+}

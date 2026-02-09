@@ -1,10 +1,22 @@
 import { createClient } from '@sanity/client'
 
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'mavn812v'
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+const apiVersion = '2024-01-01'
+
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'mavn812v',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  apiVersion: '2024-01-01',
+  projectId,
+  dataset,
+  apiVersion,
   useCdn: false,
+})
+
+export const writeClient = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false,
+  token: process.env.NEXT_PUBLIC_SANITY_WRITE_TOKEN || '',
 })
 
 export async function getAllPosts() {
@@ -172,4 +184,38 @@ export async function getRecentPosts(limit: number = 5) {
     }`,
     { limit }
   )
+}
+
+export async function getApprovedComments(postId: string) {
+  return client.fetch(
+    `*[_type == "comment" && post._ref == $postId && approved == true] | order(createdAt asc) {
+      _id,
+      name,
+      text,
+      createdAt,
+      approved,
+      parentComment
+    }`,
+    { postId }
+  )
+}
+
+export async function submitComment(data: {
+  name: string
+  email: string
+  text: string
+  postId: string
+  parentCommentId?: string
+}) {
+  const doc = {
+    _type: 'comment' as const,
+    name: data.name,
+    email: data.email,
+    text: data.text,
+    post: { _type: 'reference', _ref: data.postId },
+    approved: false,
+    createdAt: new Date().toISOString(),
+    ...(data.parentCommentId ? { parentComment: { _type: 'reference', _ref: data.parentCommentId } } : {}),
+  }
+  return writeClient.create(doc)
 }

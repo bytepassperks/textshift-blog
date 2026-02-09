@@ -3,6 +3,7 @@ import { Post } from '@/types/blog'
 import PostBody from '@/components/PostBody'
 import CTABanner from '@/components/CTABanner'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
+import CommentSection from '@/components/CommentSection'
 import Link from 'next/link'
 import { formatDate, estimateReadingTime, SITE_URL, SITE_NAME, MAIN_SITE_URL } from '@/lib/utils'
 import type { Metadata } from 'next'
@@ -278,6 +279,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </div>
 
         <CTABanner />
+
+        <CommentSection postId={post._id} />
       </article>
     </>
   )
