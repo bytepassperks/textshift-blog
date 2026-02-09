@@ -17,7 +17,7 @@ export async function getAllPosts() {
       publishedAt,
       "author": author->{name, slug, image},
       "category": category->{title, slug},
-      "featuredImage": featuredImage.asset->url,
+      "featuredImage": coalesce(featuredImage.asset->url, featuredImage),
       featuredImageAlt,
       metaTitle,
       metaDescription
@@ -36,7 +36,7 @@ export async function getPostBySlug(slug: string) {
       publishedAt,
       "author": author->{name, slug, bio, image, "imageUrl": image.asset->url},
       "category": category->{title, slug},
-      "featuredImage": featuredImage.asset->url,
+      "featuredImage": coalesce(featuredImage.asset->url, featuredImage),
       featuredImageAlt,
       metaTitle,
       metaDescription,
@@ -61,7 +61,7 @@ export async function getPostsByCategory(categorySlug: string) {
       publishedAt,
       "author": author->{name, slug, image},
       "category": category->{title, slug},
-      "featuredImage": featuredImage.asset->url,
+      "featuredImage": coalesce(featuredImage.asset->url, featuredImage),
       featuredImageAlt
     }`,
     { categorySlug }
@@ -78,7 +78,7 @@ export async function getPostsByAuthor(authorSlug: string) {
       publishedAt,
       "author": author->{name, slug, image},
       "category": category->{title, slug},
-      "featuredImage": featuredImage.asset->url,
+      "featuredImage": coalesce(featuredImage.asset->url, featuredImage),
       featuredImageAlt
     }`,
     { authorSlug }
@@ -167,7 +167,7 @@ export async function getRecentPosts(limit: number = 5) {
       publishedAt,
       "author": author->{name, slug},
       "category": category->{title, slug},
-      "featuredImage": featuredImage.asset->url,
+      "featuredImage": coalesce(featuredImage.asset->url, featuredImage),
       featuredImageAlt
     }`,
     { limit }
