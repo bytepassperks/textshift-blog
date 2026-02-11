@@ -4,7 +4,7 @@ import BlogCard from '@/components/BlogCard'
 import CTABanner from '@/components/CTABanner'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, MAIN_SITE_URL } from '@/lib/utils'
 
 export const dynamicParams = false
 
@@ -64,11 +64,28 @@ export default async function AuthorPage({ params }: { params: { slug: string } 
     ],
   }
 
+  const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: author.name,
+    url: `${SITE_URL}/author/${author.slug.current}/`,
+    description: author.bio || `Content author at ${SITE_NAME}`,
+    worksFor: {
+      '@type': 'Organization',
+      name: 'TextShift',
+      url: MAIN_SITE_URL,
+    },
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
     <div className="mx-auto max-w-6xl px-4 py-12">
       <nav aria-label="Breadcrumb" className="mb-6">

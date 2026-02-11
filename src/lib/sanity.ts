@@ -186,6 +186,23 @@ export async function getRecentPosts(limit: number = 5) {
   )
 }
 
+export async function getRelatedPosts(postId: string, categorySlug: string, limit: number = 3) {
+  return client.fetch(
+    `*[_type == "post" && _id != $postId && category->slug.current == $categorySlug] | order(publishedAt desc) [0...$limit] {
+      _id,
+      title,
+      slug,
+      excerpt,
+      publishedAt,
+      "author": author->{name, slug},
+      "category": category->{title, slug},
+      "featuredImage": coalesce(featuredImage.asset->url, featuredImage),
+      featuredImageAlt
+    }`,
+    { postId, categorySlug, limit }
+  )
+}
+
 export async function getApprovedComments(postId: string) {
   return client.fetch(
     `*[_type == "comment" && post._ref == $postId && approved == true] | order(createdAt asc) {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, MAIN_SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: {
@@ -30,6 +30,36 @@ export const metadata: Metadata = {
   },
 }
 
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  publisher: {
+    '@type': 'Organization',
+    name: 'TextShift',
+    url: MAIN_SITE_URL,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${MAIN_SITE_URL}/images/logo.png`,
+    },
+  },
+}
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'TextShift',
+  url: MAIN_SITE_URL,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${MAIN_SITE_URL}/images/logo.png`,
+  },
+  description: 'AI content detection and humanization platform with 99.18% accuracy',
+  sameAs: [],
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -48,11 +78,19 @@ export default function RootLayout({
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHX0PZ88C8" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FHX0PZ88C8');`,
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FHX0PZ88C8');gtag('config','G-9X7KGJ9Z7W');`,
           }}
         />
       </head>
       <body className="min-h-screen font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

@@ -1,9 +1,10 @@
-import { getPostBySlug, getAllSlugs } from '@/lib/sanity'
+import { getPostBySlug, getAllSlugs, getRelatedPosts } from '@/lib/sanity'
 import { Post } from '@/types/blog'
 import PostBody from '@/components/PostBody'
 import CTABanner from '@/components/CTABanner'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
 import CommentSection from '@/components/CommentSection'
+import BlogCard from '@/components/BlogCard'
 import Link from 'next/link'
 import { formatDate, estimateReadingTime, SITE_URL, SITE_NAME, MAIN_SITE_URL } from '@/lib/utils'
 import type { Metadata } from 'next'
@@ -60,9 +61,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   let post: Post | null = null
+  let relatedPosts: Post[] = []
 
   try {
     post = await getPostBySlug(params.slug)
+    if (post && post.category?.slug?.current) {
+      relatedPosts = await getRelatedPosts(post._id, post.category.slug.current, 3)
+    }
   } catch {
     post = null
   }
@@ -277,6 +282,17 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             </div>
           )}
         </div>
+
+        {relatedPosts.length > 0 && (
+          <div className="mt-12 border-t border-brand-border pt-8">
+            <h2 className="mb-6 text-2xl font-bold text-white">Related Articles</h2>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedPosts.map((rp) => (
+                <BlogCard key={rp._id} post={rp} />
+              ))}
+            </div>
+          </div>
+        )}
 
         <CTABanner />
 

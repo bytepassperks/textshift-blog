@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /studio/
 
 Sitemap: https://textshift.blog/sitemap.xml
