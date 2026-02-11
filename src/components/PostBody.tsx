@@ -1,9 +1,28 @@
 'use client'
 
 import { useMemo, useEffect, useRef } from 'react'
+import { optimizeImageUrl } from '@/lib/utils'
 
 function addExternalLinkAttrs(html: string): string {
   return html.replace(/<a\s+href="(https?:\/\/(?!textshift\.blog)[^"]+)"(?![^>]*target=)/gi, '<a href="$1" target="_blank" rel="noopener noreferrer"')
+}
+
+function optimizeInlineImages(html: string): string {
+  return html.replace(
+    /<img\s+([^>]*?)src="([^"]+)"([^>]*?)\/?>/gi,
+    (_match, before: string, src: string, after: string) => {
+      const optimizedSrc = optimizeImageUrl(src, 800)
+      const hasLoading = /loading=/i.test(before + after)
+      const hasDecoding = /decoding=/i.test(before + after)
+      const hasWidth = /width=/i.test(before + after)
+      const extras = [
+        !hasLoading ? 'loading="lazy"' : '',
+        !hasDecoding ? 'decoding="async"' : '',
+        !hasWidth ? 'width="800" height="450"' : '',
+      ].filter(Boolean).join(' ')
+      return `<img ${before}src="${optimizedSrc}"${after} ${extras} />`
+    }
+  )
 }
 
 export default function PostBody({ content }: { content: string }) {
@@ -12,6 +31,7 @@ export default function PostBody({ content }: { content: string }) {
   const processed = useMemo(() => {
     let html = content
     html = addExternalLinkAttrs(html)
+    html = optimizeInlineImages(html)
     return html
   }, [content])
 

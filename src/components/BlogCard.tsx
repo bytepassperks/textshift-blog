@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Post } from '@/types/blog'
-import { formatDate, estimateReadingTime } from '@/lib/utils'
+import { formatDate, estimateReadingTime, optimizeImageUrl, generateSrcSet } from '@/lib/utils'
 
 export default function BlogCard({ post }: { post: Post }) {
   const readTime = post.body ? estimateReadingTime(post.body) : 3
@@ -11,10 +11,15 @@ export default function BlogCard({ post }: { post: Post }) {
         {post.featuredImage ? (
           <div className="aspect-video overflow-hidden">
             <img
-              src={post.featuredImage}
+              src={optimizeImageUrl(post.featuredImage, 800)}
+              srcSet={generateSrcSet(post.featuredImage)}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               alt={post.featuredImageAlt || post.title}
+              width={800}
+              height={450}
               className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
+              decoding="async"
             />
           </div>
         ) : (
