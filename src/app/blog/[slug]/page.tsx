@@ -65,11 +65,16 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
   try {
     post = await getPostBySlug(params.slug)
-    if (post && post.category?.slug?.current) {
-      relatedPosts = await getRelatedPosts(post._id, post.category.slug.current, 3)
-    }
   } catch {
     post = null
+  }
+
+  if (post && post.category?.slug?.current) {
+    try {
+      relatedPosts = await getRelatedPosts(post._id, post.category.slug.current, 3)
+    } catch {
+      relatedPosts = []
+    }
   }
 
   if (!post) {
