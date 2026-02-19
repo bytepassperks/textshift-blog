@@ -63,8 +63,15 @@ export default function BlogSearch() {
       }
       if (e.key === 'Escape') setIsOpen(false);
     }
+    function handleOpenSearch() {
+      setIsOpen(true);
+    }
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('open-blog-search', handleOpenSearch);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('open-blog-search', handleOpenSearch);
+    };
   }, []);
 
   useEffect(() => {
