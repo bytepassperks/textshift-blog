@@ -51,8 +51,8 @@ async function indexBlogPosts() {
 
   console.log(`Found ${posts.length} published posts`);
 
-  if (posts.length === 0) {
-    console.log('No published posts found. Trying without status filter...');
+  if (posts.length === 0 && process.env.NODE_ENV !== 'production') {
+    console.log('No published posts found. Trying without status filter (dev only)...');
     const allPosts = await sanityClient.fetch(
       `*[_type == "post"] | order(publishedAt desc) {
         _id,
@@ -74,6 +74,9 @@ async function indexBlogPosts() {
     );
     console.log(`Found ${allPosts.length} total posts (all statuses)`);
     posts.push(...allPosts);
+  } else if (posts.length === 0) {
+    console.log('No published posts found. Skipping indexing.');
+    return;
   }
 
   const records = posts.map((post) => {
@@ -109,11 +112,6 @@ async function indexBlogPosts() {
   console.log(`Indexing ${records.length} records to Algolia...`);
 
   try {
-    await client.replaceAllObjects({
-      indexName: ALGOLIA_INDEX_NAME,
-      objects: records,
-    });
-
     await client.setSettings({
       indexName: ALGOLIA_INDEX_NAME,
       indexSettings: {
@@ -156,6 +154,11 @@ async function indexBlogPosts() {
         highlightPreTag: '<mark>',
         highlightPostTag: '</mark>',
       },
+    });
+
+    await client.replaceAllObjects({
+      indexName: ALGOLIA_INDEX_NAME,
+      objects: records,
     });
 
     console.log(`Successfully indexed ${records.length} blog posts to Algolia "${ALGOLIA_INDEX_NAME}" index`);

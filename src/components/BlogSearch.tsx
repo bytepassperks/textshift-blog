@@ -6,6 +6,12 @@ import { searchClient, BLOG_INDEX } from '@/lib/algolia';
 import type { BlogSearchResult } from '@/lib/algolia';
 import { formatDate } from '@/lib/utils';
 
+function sanitizeHighlight(html: string): string {
+  return html
+    .replace(/<(?!\/?(mark)\b)[^>]*>/gi, '')
+    .replace(/on\w+\s*=/gi, '');
+}
+
 export default function BlogSearch() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<BlogSearchResult[]>([]);
@@ -140,15 +146,17 @@ export default function BlogSearch() {
                       <h4
                         className="text-sm font-semibold text-gray-900 line-clamp-1"
                         dangerouslySetInnerHTML={{
-                          __html:
+                          __html: sanitizeHighlight(
                             hit._highlightResult?.title?.value || hit.title,
+                          ),
                         }}
                       />
                       <p
                         className="text-xs text-gray-500 mt-0.5 line-clamp-2"
                         dangerouslySetInnerHTML={{
-                          __html:
+                          __html: sanitizeHighlight(
                             hit._highlightResult?.excerpt?.value || hit.excerpt,
+                          ),
                         }}
                       />
                       <div className="flex items-center gap-2 mt-1 text-xs text-gray-400">
