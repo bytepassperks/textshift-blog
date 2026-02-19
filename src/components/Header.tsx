@@ -33,6 +33,16 @@ export default function Header() {
           >
             TextShift.org
           </a>
+          <button
+            onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
+            className="flex items-center gap-2 rounded-lg border border-brand-border bg-white/5 px-3 py-1.5 text-sm text-gray-400 transition-all hover:border-brand-green/30 hover:bg-white/10"
+          >
+            <svg className="h-3.5 w-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <span>Search...</span>
+            <kbd className="ml-1 text-[10px] rounded border border-brand-border bg-white/5 px-1.5 py-0.5 font-mono">&#8984;K</kbd>
+          </button>
           <a
             href={`${MAIN_SITE_URL}/register`}
             target="_blank"

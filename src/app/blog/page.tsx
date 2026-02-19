@@ -46,7 +46,7 @@ export default async function BlogIndexPage() {
     <div className="mx-auto max-w-6xl px-4 py-12">
       <div className="mb-10">
         <h1 className="mb-3 text-3xl font-bold text-white md:text-4xl">All Articles</h1>
-        <p className="text-brand-muted">
+        <p className="mb-6 text-brand-muted">
           Expert guides on AI content, detection tools, humanization techniques, and writing tips.
         </p>
       </div>
