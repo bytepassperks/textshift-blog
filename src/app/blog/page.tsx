@@ -3,7 +3,6 @@ import { Post, Category } from '@/types/blog'
 import BlogCard from '@/components/BlogCard'
 import CTABanner from '@/components/CTABanner'
 import PaginatedBlogList from '@/components/PaginatedBlogList'
-import BlogSearch from '@/components/BlogSearch'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
@@ -50,7 +49,6 @@ export default async function BlogIndexPage() {
         <p className="mb-6 text-brand-muted">
           Expert guides on AI content, detection tools, humanization techniques, and writing tips.
         </p>
-        <BlogSearch />
       </div>
 
       {categories.length > 0 && (

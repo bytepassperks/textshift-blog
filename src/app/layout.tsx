@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BlogSearch from '@/components/BlogSearch'
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
@@ -56,6 +57,7 @@ export default function RootLayout({
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <BlogSearch />
       </body>
     </html>
   )
