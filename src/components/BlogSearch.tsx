@@ -80,7 +80,7 @@ export default function BlogSearch() {
     <div ref={containerRef} className="relative w-full max-w-xl mx-auto">
       <div className="relative">
         <svg
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -102,29 +102,29 @@ export default function BlogSearch() {
           }}
           onFocus={() => setIsOpen(true)}
           placeholder="Search articles..."
-          className="w-full pl-10 pr-16 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm transition-shadow hover:shadow-md"
+          className="w-full pl-11 pr-20 py-3 rounded-xl border border-brand-border bg-brand-card text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-green/50 focus:border-brand-green/50 text-sm transition-all"
         />
-        <kbd className="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-xs text-gray-400 bg-gray-100 rounded border border-gray-200">
-          <span className="text-xs">&#8984;</span>K
+        <kbd className="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-[10px] text-gray-500 bg-brand-dark rounded border border-brand-border font-mono">
+          <span>&#8984;</span>K
         </kbd>
       </div>
 
       {isOpen && (query.trim() || isLoading) && (
-        <div className="absolute z-50 top-full mt-2 w-full bg-white rounded-xl shadow-2xl border border-gray-100 max-h-[480px] overflow-y-auto">
+        <div className="absolute z-50 top-full mt-2 w-full bg-brand-card rounded-xl border border-brand-border shadow-2xl shadow-black/50 max-h-[480px] overflow-y-auto">
           {isLoading && (
-            <div className="px-4 py-6 text-center text-gray-400">
-              <div className="inline-block w-5 h-5 border-2 border-gray-300 border-t-emerald-500 rounded-full animate-spin" />
+            <div className="px-4 py-6 text-center">
+              <div className="inline-block w-5 h-5 border-2 border-brand-border border-t-brand-green rounded-full animate-spin" />
             </div>
           )}
 
           {!isLoading && results.length === 0 && query.trim() && (
-            <div className="px-4 py-6 text-center text-gray-500">
+            <div className="px-4 py-6 text-center text-gray-500 text-sm">
               No articles found for &ldquo;{query}&rdquo;
             </div>
           )}
 
           {!isLoading && results.length > 0 && (
-            <ul className="divide-y divide-gray-50">
+            <ul className="divide-y divide-brand-border">
               {results.map((hit) => (
                 <li key={hit.objectID}>
                   <Link
@@ -133,18 +133,18 @@ export default function BlogSearch() {
                       setIsOpen(false);
                       setQuery('');
                     }}
-                    className="flex gap-4 px-4 py-3 hover:bg-emerald-50 transition-colors"
+                    className="flex gap-3 px-4 py-3 hover:bg-white/5 transition-colors"
                   >
                     {hit.featuredImage && (
                       <img
                         src={hit.featuredImage}
                         alt={hit.featuredImageAlt || hit.title}
-                        className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+                        className="w-14 h-14 rounded-lg object-cover flex-shrink-0"
                       />
                     )}
                     <div className="flex-1 min-w-0">
                       <h4
-                        className="text-sm font-semibold text-gray-900 line-clamp-1"
+                        className="text-sm font-semibold text-white line-clamp-1 [&_mark]:bg-brand-green/30 [&_mark]:text-brand-green [&_mark]:rounded-sm [&_mark]:px-0.5"
                         dangerouslySetInnerHTML={{
                           __html: sanitizeHighlight(
                             hit._highlightResult?.title?.value || hit.title,
@@ -152,16 +152,16 @@ export default function BlogSearch() {
                         }}
                       />
                       <p
-                        className="text-xs text-gray-500 mt-0.5 line-clamp-2"
+                        className="text-xs text-gray-500 mt-0.5 line-clamp-2 [&_mark]:bg-brand-green/20 [&_mark]:text-gray-300"
                         dangerouslySetInnerHTML={{
                           __html: sanitizeHighlight(
                             hit._highlightResult?.excerpt?.value || hit.excerpt,
                           ),
                         }}
                       />
-                      <div className="flex items-center gap-2 mt-1 text-xs text-gray-400">
+                      <div className="flex items-center gap-2 mt-1.5 text-xs text-gray-500">
                         {hit.categoryTitle && (
-                          <span className="px-1.5 py-0.5 bg-emerald-50 text-emerald-600 rounded">
+                          <span className="px-1.5 py-0.5 bg-brand-green/10 text-brand-green rounded text-[10px] font-medium">
                             {hit.categoryTitle}
                           </span>
                         )}
@@ -177,8 +177,8 @@ export default function BlogSearch() {
             </ul>
           )}
 
-          <div className="px-4 py-2 border-t border-gray-100 flex items-center justify-between">
-            <span className="text-xs text-gray-400">
+          <div className="px-4 py-2 border-t border-brand-border flex items-center justify-between">
+            <span className="text-[10px] text-gray-600">
               {results.length > 0
                 ? `${results.length} result${results.length !== 1 ? 's' : ''}`
                 : ''}
@@ -187,7 +187,7 @@ export default function BlogSearch() {
               href="https://www.algolia.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-gray-300 hover:text-gray-400 flex items-center gap-1"
+              className="text-[10px] text-gray-600 hover:text-gray-400 flex items-center gap-1 transition-colors"
             >
               Search by Algolia
             </a>
