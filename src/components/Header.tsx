@@ -34,7 +34,7 @@ export default function Header() {
             TextShift.org
           </a>
           <button
-            onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
+            onClick={() => window.dispatchEvent(new Event('open-blog-search'))}
             className="flex items-center gap-2 rounded-lg border border-brand-border bg-white/5 px-3 py-1.5 text-sm text-gray-400 transition-all hover:border-brand-green/30 hover:bg-white/10"
           >
             <svg className="h-3.5 w-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
