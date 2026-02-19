@@ -3,6 +3,7 @@ import { Post, Category } from '@/types/blog'
 import BlogCard from '@/components/BlogCard'
 import CTABanner from '@/components/CTABanner'
 import PaginatedBlogList from '@/components/PaginatedBlogList'
+import BlogSearch from '@/components/BlogSearch'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
@@ -46,9 +47,10 @@ export default async function BlogIndexPage() {
     <div className="mx-auto max-w-6xl px-4 py-12">
       <div className="mb-10">
         <h1 className="mb-3 text-3xl font-bold text-white md:text-4xl">All Articles</h1>
-        <p className="text-brand-muted">
+        <p className="mb-6 text-brand-muted">
           Expert guides on AI content, detection tools, humanization techniques, and writing tips.
         </p>
+        <BlogSearch />
       </div>
 
       {categories.length > 0 && (

@@ -2,6 +2,7 @@ import { getAllPosts, getAllCategories } from '@/lib/sanity'
 import { Post, Category } from '@/types/blog'
 import BlogCard from '@/components/BlogCard'
 import CTABanner from '@/components/CTABanner'
+import BlogSearch from '@/components/BlogSearch'
 import Link from 'next/link'
 import { MAIN_SITE_URL, SITE_NAME } from '@/lib/utils'
 
@@ -40,6 +41,9 @@ export default async function HomePage() {
               TextShift.org
             </a>.
           </p>
+          <div className="mx-auto mb-8 max-w-xl">
+            <BlogSearch />
+          </div>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href={`${MAIN_SITE_URL}/register`}
