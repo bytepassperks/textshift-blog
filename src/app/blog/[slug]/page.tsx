@@ -80,6 +80,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   }
 
   const readTime = post.body ? estimateReadingTime(post.body) : 3
+  const wordCount = post.body ? post.body.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length : 0
   const postUrl = `${SITE_URL}/blog/${post.slug.current}/`
 
   const faqs: { question: string; answer: string }[] = []
@@ -107,6 +108,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     description: post.excerpt,
     image: post.featuredImage || undefined,
     datePublished: post.publishedAt,
+    dateModified: post.updatedAt || post.publishedAt,
+    wordCount: wordCount > 0 ? wordCount : undefined,
     author: {
       '@type': 'Person',
       name: post.author?.name,

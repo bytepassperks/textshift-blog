@@ -46,6 +46,7 @@ export async function getPostBySlug(slug: string) {
       excerpt,
       body,
       publishedAt,
+      "updatedAt": _updatedAt,
       "author": author->{name, slug, bio, image, "imageUrl": image.asset->url},
       "category": category->{title, slug},
       "featuredImage": coalesce(featuredImage.asset->url, featuredImage),

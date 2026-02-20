@@ -3,7 +3,7 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BlogSearch from '@/components/BlogSearch'
-import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, MAIN_SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: {
@@ -31,6 +31,37 @@ export const metadata: Metadata = {
   },
 }
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'TextShift',
+  url: MAIN_SITE_URL,
+  logo: `${MAIN_SITE_URL}/logo.png`,
+  sameAs: [
+    MAIN_SITE_URL,
+    SITE_URL,
+    'https://twitter.com/textshiftai',
+    'https://www.linkedin.com/company/textshift',
+  ],
+}
+
+const webSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  url: SITE_URL,
+  publisher: {
+    '@type': 'Organization',
+    name: 'TextShift',
+    url: MAIN_SITE_URL,
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${SITE_URL}/blog/?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -46,6 +77,14 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <link rel="alternate" type="application/rss+xml" title="TextShift Blog RSS" href="/rss.xml" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+        />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHX0PZ88C8" />
         <script
           dangerouslySetInnerHTML={{
