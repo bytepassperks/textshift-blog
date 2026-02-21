@@ -107,6 +107,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     description: post.excerpt,
     image: post.featuredImage || undefined,
     datePublished: post.publishedAt,
+    dateModified: post.updatedAt || post.publishedAt,
+    wordCount: post.wordCount || undefined,
     author: {
       '@type': 'Person',
       name: post.author?.name,

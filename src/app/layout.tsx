@@ -3,7 +3,7 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BlogSearch from '@/components/BlogSearch'
-import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, MAIN_SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: {
@@ -25,9 +25,49 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} - AI Content Tips & Guides`,
     description: SITE_DESCRIPTION,
   },
+  alternates: {
+    canonical: SITE_URL,
+  },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large' as const,
+      'max-snippet': -1,
+    },
+  },
+}
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'TextShift',
+  url: MAIN_SITE_URL,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${MAIN_SITE_URL}/images/logo.png`,
+  },
+  description: 'AI content detection and humanization platform with 99.18% accuracy',
+  sameAs: [
+    'https://twitter.com/textshift',
+    'https://linkedin.com/company/textshift',
+    MAIN_SITE_URL,
+    SITE_URL,
+  ],
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  url: SITE_URL,
+  publisher: {
+    '@type': 'Organization',
+    name: 'TextShift',
+    url: MAIN_SITE_URL,
   },
 }
 
@@ -39,6 +79,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

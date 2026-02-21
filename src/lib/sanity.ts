@@ -46,6 +46,8 @@ export async function getPostBySlug(slug: string) {
       excerpt,
       body,
       publishedAt,
+      "updatedAt": _updatedAt,
+      "wordCount": round(length(body) / 5),
       "author": author->{name, slug, bio, image, "imageUrl": image.asset->url},
       "category": category->{title, slug},
       "featuredImage": coalesce(featuredImage.asset->url, featuredImage),
@@ -148,6 +150,24 @@ export async function getAllAuthors() {
 export async function getAllSlugs() {
   return client.fetch(
     `*[_type == "post" && defined(slug.current)]{
+      "slug": slug.current
+    }`
+  )
+}
+
+export async function getAllPostsForSitemap() {
+  return client.fetch(
+    `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+      "slug": slug.current,
+      publishedAt,
+      _updatedAt
+    }`
+  )
+}
+
+export async function getAllCategoriesForSitemap() {
+  return client.fetch(
+    `*[_type == "category" && defined(slug.current)] {
       "slug": slug.current
     }`
   )
