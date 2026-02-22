@@ -1,0 +1,698 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #e5e5e5;
+}
+
+::selection {
+  background-color: rgba(16, 185, 129, 0.3);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #10B981;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==========================================
+   BLOG POST BODY - Typography & Spacing
+   ========================================== */
+
+.post-body {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: #d1d5db;
+}
+
+.post-body p {
+  margin-bottom: 1.75rem;
+  line-height: 1.9;
+}
+
+.post-body h2 {
+  position: relative;
+  padding-left: 18px;
+  border-left: 4px solid #10B981;
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.post-body h3 {
+  color: #e5e5e5;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.post-body a {
+  color: #10B981;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.post-body a:hover {
+  color: #34d399;
+  border-bottom-color: #34d399;
+}
+
+.post-body strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ==========================================
+   BLOG POST BODY - Images & Figures
+   ========================================== */
+
+.post-body figure {
+  margin: 2.5rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1e1e1e;
+  background: #111111;
+}
+
+.post-body figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.post-body figure figcaption {
+  padding: 14px 20px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #888888;
+  font-style: italic;
+  border-top: 1px solid #1e1e1e;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   BLOG POST BODY - Video Embeds
+   ========================================== */
+
+.post-body .video-container,
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 2.5rem 0;
+  border: 1px solid #1e1e1e;
+}
+
+.post-body .video-container iframe,
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.post-body .video-caption,
+.video-caption {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #888888;
+  font-style: italic;
+  margin-top: 0.75rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   BLOG POST BODY - Table of Contents
+   ========================================== */
+
+.post-body details.toc-container {
+  border-radius: 12px;
+  border: 1px solid #1e1e1e;
+  background: #111111;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.post-body details.toc-container summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: white;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+}
+
+.post-body details.toc-container nav ul {
+  margin-top: 1rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.post-body details.toc-container nav ul li {
+  padding: 0.35rem 0;
+}
+
+.post-body details.toc-container nav ul li a {
+  color: #10B981;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  border-bottom: none;
+}
+
+.post-body details.toc-container nav ul li a:hover {
+  color: #34d399;
+  text-decoration: underline;
+  border-bottom: none;
+}
+
+.post-body details.toc-container nav ul ul {
+  padding-left: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.post-body details.toc-container nav ul ul li a {
+  color: #888888;
+  font-size: 0.875rem;
+}
+
+.post-body details.toc-container nav ul ul li a:hover {
+  color: #10B981;
+}
+
+/* ==========================================
+   BLOG POST BODY - Blockquotes & Callouts
+   ========================================== */
+
+.post-body blockquote,
+.post-body .callout-box {
+  border-left: 4px solid #10B981;
+  background: rgba(16, 185, 129, 0.05);
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #d1d5db;
+}
+
+.post-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   BLOG POST BODY - CTA Banners
+   ========================================== */
+
+.post-body .cta-banner {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  padding: 2.5rem;
+  border-radius: 12px;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.post-body .cta-banner p {
+  color: white !important;
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.post-body .cta-banner a {
+  display: inline-block;
+  background: white;
+  color: #10B981 !important;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-body .cta-banner a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border-bottom: none;
+}
+
+/* ==========================================
+   BLOG POST BODY - Lists
+   ========================================== */
+
+.post-body ul, .post-body ol {
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.post-body ul li, .post-body ol li {
+  padding: 0.35rem 0;
+  line-height: 1.8;
+  margin-bottom: 0.25rem;
+}
+
+.post-body ul li::marker {
+  color: #10B981;
+}
+
+.post-body ol li::marker {
+  color: #10B981;
+  font-weight: 600;
+}
+
+/* ==========================================
+   BLOG POST BODY - FAQ Section
+   ========================================== */
+
+.post-body .faq-item {
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.25rem 0;
+  background: #111111;
+  transition: border-color 0.2s;
+}
+
+.post-body .faq-item:hover {
+  border-color: #10B981;
+}
+
+.post-body .faq-item .faq-question {
+  color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+}
+
+.post-body .faq-item .faq-answer {
+  color: #d1d5db;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   BLOG POST BODY - Code
+   ========================================== */
+
+.post-body code {
+  background: #1a1a2e;
+  color: #10B981;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.post-body pre {
+  background: #111111;
+  border: 1px solid #1e1e1e;
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+/* ==========================================
+   BLOG POST BODY - Horizontal Rules
+   ========================================== */
+
+.post-body hr {
+  border: none;
+  border-top: 1px solid #1e1e1e;
+  margin: 3rem 0;
+}
+
+/* ==========================================
+   BLOG POST BODY - Responsive
+   ========================================== */
+
+@media (max-width: 768px) {
+  .post-body {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .post-body h2 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-body h3 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-body p {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-body figure {
+    margin: 2rem -1rem;
+    border-radius: 0;
+  }
+
+  .post-body .cta-banner {
+    padding: 1.5rem;
+    margin: 2rem -0.5rem;
+  }
+}
+
+/* ==========================================
+   COMMENT SECTION
+   ========================================== */
+
+.comment-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #1e1e1e;
+}
+
+.comment-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.comment-form {
+  background: #111111;
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.comment-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .comment-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comment-form-field input,
+.comment-form-field textarea {
+  width: 100%;
+  background: #0a0a0a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #e5e5e5;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.comment-form-field input:focus,
+.comment-form-field textarea:focus {
+  outline: none;
+  border-color: #10B981;
+}
+
+.comment-form-field input::placeholder,
+.comment-form-field textarea::placeholder {
+  color: #555;
+}
+
+.comment-form-field input:disabled,
+.comment-form-field textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.comment-form-field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.comment-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.comment-submit-btn {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 0.65rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+
+.comment-submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.comment-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.comment-form-note {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.comment-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.comment-success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  color: #10B981;
+  font-size: 0.95rem;
+}
+
+.comment-replying-to {
+  font-size: 0.875rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.comment-replying-to strong {
+  color: #10B981;
+}
+
+.comment-cancel-reply {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  text-decoration: underline;
+}
+
+.comment-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #888;
+  font-size: 0.95rem;
+  padding: 2rem 0;
+}
+
+.comment-loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333;
+  border-top-color: #10B981;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.comment-empty {
+  color: #666;
+  font-size: 0.95rem;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.comment-item {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+.comment-reply {
+  border-bottom: none;
+  padding: 0.75rem 0 0.75rem 0;
+  border-left: 2px solid #1e1e1e;
+  padding-left: 1rem;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.comment-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.comment-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.comment-author {
+  font-weight: 600;
+  color: #e5e5e5;
+  font-size: 0.95rem;
+}
+
+.comment-time {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.comment-text {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-left: 2.75rem;
+  white-space: pre-wrap;
+}
+
+.comment-actions {
+  margin-left: 2.75rem;
+  margin-top: 0.4rem;
+}
+
+.comment-reply-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.825rem;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  transition: color 0.15s;
+}
+
+.comment-reply-btn:hover {
+  color: #10B981;
+}
+
+.comment-reply-form-wrapper {
+  margin-left: 2.75rem;
+  margin-top: 0.75rem;
+}
+
+.comment-replies {
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .comment-text,
+  .comment-actions,
+  .comment-reply-form-wrapper {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .comment-form {
+    padding: 1rem;
+  }
+
+  .comment-form-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
