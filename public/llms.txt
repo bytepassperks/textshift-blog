@@ -1,0 +1,42 @@
+# TextShift Blog
+
+> Official blog for TextShift — the AI content detection and humanization platform with 99.18% accuracy and 22 writing tools.
+
+The TextShift Blog publishes expert content on AI writing, content authenticity, and digital content strategy.
+
+## Content Categories
+- **AI Detection** — How AI content detection works, accuracy benchmarks, model comparisons
+- **AI Humanization** — Techniques for making AI text sound natural, bypassing detection tools
+- **Plagiarism Detection** — Academic integrity, content originality, plagiarism prevention
+- **SEO & Content Strategy** — SEO blog writing, content marketing, keyword optimization
+- **AI Writing Tools** — Reviews, comparisons, and guides for AI writing assistants
+- **Industry News** — Latest developments in AI content generation and detection
+
+## Key Topics
+- AI content detection accuracy and methods
+- ChatGPT, GPT-4, Claude, Gemini detection
+- AI text humanization techniques
+- Plagiarism checking and prevention
+- SEO content writing best practices
+- AI writing tool comparisons and reviews
+
+## About TextShift
+- 22 AI-powered writing tools
+- 99.18% AI detection accuracy (RoBERTa + TriBoost ensemble)
+- 99.95% plagiarism detection accuracy
+- 3 humanization modes (Academic, Professional, Casual)
+- Trusted by 10,000+ users
+- Free tier: 5,000 words/month
+
+## Links
+- Blog: https://textshift.blog
+- Main Website: https://textshift.org
+- Features: https://textshift.org/features
+- Pricing: https://textshift.org/pricing
+- API Documentation: https://textshift.org/api-docs
+- Contact: https://textshift.org/contact
+
+## Technical Stack
+- Built with Next.js (Static Site Generation)
+- Content managed via Sanity.io CMS
+- Deployed on Render

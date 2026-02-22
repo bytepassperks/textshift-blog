@@ -1,4 +1,48 @@
+# TextShift Blog Robots.txt
+# https://textshift.blog
+
+# Default rules for all crawlers
 User-agent: *
 Allow: /
+
+# === AI/LLM Crawlers — Explicitly Allowed ===
+# OpenAI (ChatGPT)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google (Gemini training)
+User-agent: Google-Extended
+Allow: /
+
+# Apple (Apple Intelligence)
+User-agent: Applebot-Extended
+Allow: /
+
+# === Block Known Scrapers/Bad Bots ===
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
 
 Sitemap: https://textshift.blog/sitemap.xml
