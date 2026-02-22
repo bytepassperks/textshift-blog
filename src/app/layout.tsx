@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
   },
   alternates: {
-    canonical: SITE_URL,
+    canonical: `${SITE_URL}/`,
   },
   robots: {
     index: true,
