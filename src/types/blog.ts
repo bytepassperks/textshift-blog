@@ -16,6 +16,8 @@ export interface Post {
   excerpt: string
   body?: string
   publishedAt: string
+  updatedAt?: string
+  wordCount?: number
   author: Author
   category: Category
   featuredImage: string | null
