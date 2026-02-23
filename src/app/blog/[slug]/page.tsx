@@ -246,6 +246,18 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           </div>
         </div>
 
+        {post.featuredImage && (
+          <div className="mb-8 overflow-hidden rounded-xl">
+            <img
+              src={post.featuredImage}
+              alt={post.featuredImageAlt || post.title}
+              className="h-auto w-full object-cover"
+              width={1200}
+              height={630}
+            />
+          </div>
+        )}
+
         {post.body && (
           <>
             <PostBody content={post.body} />
