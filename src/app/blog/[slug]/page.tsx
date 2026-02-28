@@ -102,13 +102,14 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
   const articleSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
     image: post.featuredImage || undefined,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt || post.publishedAt,
     wordCount: post.wordCount || undefined,
+    inLanguage: post.language || 'en',
     author: {
       '@type': 'Person',
       name: post.author?.name,
@@ -117,11 +118,22 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       '@type': 'Organization',
       name: 'TextShift',
       url: MAIN_SITE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${MAIN_SITE_URL}/images/logo.png`,
+      },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': postUrl,
     },
+    isPartOf: {
+      '@type': 'Blog',
+      name: 'TextShift Blog',
+      url: SITE_URL,
+    },
+    keywords: post.keywords?.join(', '),
+    articleSection: post.category?.title,
   }
 
   const breadcrumbSchema = {
