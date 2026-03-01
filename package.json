@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/generate-sitemap-rss.js",
+    "build": "rm -rf .next/cache && next build && node scripts/generate-sitemap-rss.js",
     "algolia-index": "node scripts/algolia-index.js",
     "start": "next start",
     "lint": "next lint"
